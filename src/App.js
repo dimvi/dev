@@ -30,76 +30,73 @@ const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
 
 // ------------------------------
-// Demo data (수정해서 사용하세요)
+// 데모 데이터 (수정해서 사용하세요)
 // ------------------------------
 const NAV_ITEMS = [
-  { key: "about", href: "#about", title: "About" },
-  { key: "skills", href: "#skills", title: "Skills" },
-  { key: "projects", href: "#projects", title: "Projects" },
-  { key: "experience", href: "#experience", title: "Experience" },
-  { key: "contact", href: "#contact", title: "Contact" },
+  { key: "about", href: "#about", title: "menu1" },
+  { key: "skills", href: "#skills", title: "menu2" },
+  { key: "projects", href: "#projects", title: "menu3" },
+  { key: "experience", href: "#experience", title: "menu4" },
 ];
 
-const SKILLS: { name: string; pct: number }[] = [
-  { name: "C# / Unity", pct: 90 },
-  { name: "Phaser / TS", pct: 85 },
-  { name: "Perf / Tools", pct: 88 },
+const SKILLS = [
+  { name: "Skill1", pct: 90 },
+  { name: "Skill2", pct: 85 },
+  { name: "Skill3", pct: 88 },
 ];
 
 const PROJECTS = [
   {
-    title: "Action RPG (Unity)",
-    tags: ["Unity", "ECS", "Addressables"],
+    title: "샤싣1",
+    tags: ["tag1", "tag2", "tag3"],
     summary:
-      "씬 로딩 최적화로 초기 로딩 42% 단축. 몬스터 AI CPU 사용량 30% 감소.",
-    demo: "#",
+      "글쎄",
   },
   {
-    title: "Canvas Puzzle (Phaser)",
-    tags: ["Phaser", "TypeScript", "Vite"],
-    summary: "Phaser로 웹 퍼즐 게임 제작. LCP 1.8s 달성, CLS 0.01.",
-    demo: "#",
-  },
-  {
-    title: "Ops Dashboard",
+    title: "샤싣2",
     tags: ["Vue", "GCP", "OAuth"],
-    summary: "운영 대시보드 구축. 구글 OAuth 연동 및 권한 분리.",
-    demo: "#",
+    summary: "꺄ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ",
+  },
+  {
+    title: "샤싣34",
+    tags: ["tag1", "tag2", "tag3"],
+    summary: "조운정엉엉어",
   },
 ];
 
 const EXPERIENCES = [
   {
     period: "2024.03 – 현재",
-    company: "Supercat",
-    position: "Unity Developer",
+    company: "cp",
+    position: "forward",
     points: [
-      "Unity ECS 기반 실시간 멀티플레이 게임 개발",
-      "Addressables로 리소스 관리 최적화",
-      "물리 연산 최적화로 CPU 사용량 30% 감소",
+      "??yallo",
+      "some description..",
+      "some description..",
     ],
-    tags: ["Unity", "ECS", "Addressables"],
+    tags: ["tag1", "tag2", "tag3"],
   },
   {
     period: "2021.05 – 2024.02",
-    company: "Indie Studio",
-    position: "Phaser/Web Game Developer",
+    company: "com",
+    position: "molla",
     points: [
-      "Phaser 기반 브라우저 게임 5종 제작 및 운영",
-      "Vue + Vite로 운영 대시보드/툴 개발",
-      "MAU 20k → 50k 성장 달성",
+      "point1...some description",
+      "point2...some description",
+      "point3...some description",
     ],
-    tags: ["Phaser", "Vue", "Vite"],
+    tags: ["tag1", "tag2", "tag3"],
   },
   {
     period: "2018.01 – 2021.04",
-    company: "Studio",
-    position: "Client Engineer",
+    company: "pppp",
+    position: "pusyy",
     points: [
-      "게임 UI/네트워크 모듈 개발",
-      "로딩 최적화 및 메모리 관리 개선",
+      "point1...some description",
+      "point2...some description",
+      "point3...some description",
     ],
-    tags: ["C#", "Unity"],
+    tags: ["tag1", "tag2", "tag3"],
   },
 ];
 
@@ -121,28 +118,32 @@ export default function PortfolioApp() {
       }}
     >
       <Layout>
-        {/* Sticky Header */}
+        {/* 고정 헤더 */} 
         <Header
           style={{
             position: "sticky",
             top: 0,
             zIndex: 100,
             backdropFilter: "saturate(180%) blur(8px)",
-            background: "rgba(0,0,0,0.45)",
+            background: "rgba(0,0,0,0.25)",
           }}
         >
           <Row align="middle" justify="space-between" gutter={16}>
             <Col>
               <Space size="large" align="center">
-                <Avatar size={40}>HP</Avatar>
+                <Avatar size={40}>YR</Avatar>
                 <Text style={{ color: "#fff" }} strong>
-                  Hanwoong Park
+                  yourid
                 </Text>
               </Space>
             </Col>
             <Col flex="auto">
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <Anchor direction="horizontal" items={NAV_ITEMS} targetOffset={80} />
+                <Anchor
+                  direction="horizontal"
+                  items={NAV_ITEMS}
+                  targetOffset={80}
+                />
               </div>
             </Col>
             <Col>
@@ -158,49 +159,48 @@ export default function PortfolioApp() {
         </Header>
 
         <Content style={{ maxWidth: 1080, margin: "0 auto" }}>
-          {/* Hero */}
+          {/* 소개 */}
           <section style={{ padding: "96px 16px 64px" }}>
             <Row gutter={[32, 32]} align="middle">
               <Col xs={24} md={14}>
                 <Space direction="vertical" size="large">
-                  <Title style={{ marginBottom: 0 }}>Unity/Phaser Game Developer</Title>
+                  <Title style={{ marginBottom: 0 }}>Title</Title>
                   <Paragraph type="secondary" style={{ marginTop: 0 }}>
-                    실사용 성능 최적화와 유지보수 쉬운 구조에 집중합니다. 실서비스 트래픽/빌드 파이프라인/클라이언트 렌더링 최적화 경험.
+                    paragraph....
                   </Paragraph>
                   <Space wrap>
                     <Button type="primary" icon={<MailOutlined />} href="mailto:me@example.com">
-                      Contact
-                    </Button>
-                    <Button icon={<GithubOutlined />} href="https://github.com/yourid" target="_blank">
-                      GitHub
-                    </Button>
-                    <Button icon={<LinkOutlined />} href="#" target="_blank">
-                      LinkedIn
+                      Email
                     </Button>
                   </Space>
                 </Space>
               </Col>
               <Col xs={24} md={10}>
-                <Card hoverable>
-                  <Space direction="vertical">
-                    <Text type="secondary">현재 포커스</Text>
-                    <div>
-                      <Space wrap>
-                        {[
-                          "Unity ECS",
-                          "Phaser",
-                          "Vite",
-                          "OAuth",
-                          "GCP",
-                        ].map((t) => (
-                          <Tag key={t}>{t}</Tag>
-                        ))}
-                      </Space>
-                    </div>
-                    <Paragraph style={{ marginTop: 8, marginBottom: 0 }}>
-                      최근: 로딩 시간 38% 단축, 충돌 처리 O(N) → O(log N) 개선
-                    </Paragraph>
-                  </Space>
+                <Card
+                  style={{
+                    textAlign: "center",
+                    padding: 0,
+                    minHeight: 220,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  bodyStyle={{ padding: 0 }}
+                >
+                  {/* 썸네일 이미지 영역 */}
+                  <img
+                    src="/thumbnail.png"
+                    alt="Profile Thumbnail"
+                    style={{
+                      width: "100%",
+                      maxWidth: 180,
+                      height: "auto",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      margin: "32px auto",
+                      boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+                    }}
+                  />
                 </Card>
               </Col>
             </Row>
@@ -212,16 +212,16 @@ export default function PortfolioApp() {
           <section style={{ padding: "64px 16px" }}>
             <Title level={2}>About</Title>
             <Paragraph>
-              코드 분석·리팩토링과 성능 최적화에 강점. MVP + ECS 혼합 아키텍처로 UI/도메인 책임 분리.
+              Paragraph text goes here. This section can include a brief introduction about yourself, your background, and what you are passionate about in your field of work.
             </Paragraph>
             <Row gutter={[16, 16]}>
               <Col xs={24} md={12}>
                 <Card>
                   <DescriptionsLike
                     items={[
-                      ["지역", "Seoul, KR"],
-                      ["경력", "7+ years"],
-                      ["이메일", "me@example.com"],
+                      ["key", "Value"],
+                      ["key", "Value"],
+                      ["key", "Value"],
                     ]}
                   />
                 </Card>
@@ -229,9 +229,9 @@ export default function PortfolioApp() {
               <Col xs={24} md={12}>
                 <Card>
                   <Space direction="vertical">
-                    <Text strong>핵심 가치</Text>
+                    <Text strong>Text</Text>
                     <Paragraph style={{ marginBottom: 0 }}>
-                      가독성 높은 코드 → 낮은 결함률 → 빠른 릴리즈.
+                      Paragraph text can be used to provide additional information or context about your skills, experiences, or projects. This is a great place to elaborate on your professional journey and what drives you in your career.
                     </Paragraph>
                   </Space>
                 </Card>
@@ -246,14 +246,12 @@ export default function PortfolioApp() {
             <Title level={2}>Skills</Title>
             <Space wrap size="small">
               {[
-                "C#",
-                "Unity",
-                "Phaser",
-                "TypeScript",
-                "Vue",
-                "ECS",
-                "OAuth",
-                "GCP",
+                "tag1",
+                "tag2",
+                "tag3",
+                "tag4",
+                "tag5",
+                "tag6",
               ].map((s) => (
                 <Tag key={s}>{s}</Tag>
               ))}
@@ -278,15 +276,15 @@ export default function PortfolioApp() {
                   <Card
                     hoverable
                     title={p.title}
-                    extra={
-                      <Button size="small" type="link" icon={<LinkOutlined />} href={p.demo} target="_blank">
-                        Demo
-                      </Button>
-                    }
+                    // extra={
+                    //   <Button size="small" type="link" icon={<LinkOutlined />} href={p.demo} target="_blank">
+                    //     Demo
+                    //   </Button>
+                    // }
                   >
                     <Space direction="vertical" size="small">
                       <Space wrap>
-                        {p.tags.map((t: string) => (
+                        {p.tags.map((t) => (
                           <Tag key={t}>{t}</Tag>
                         ))}
                       </Space>
@@ -333,23 +331,6 @@ export default function PortfolioApp() {
             />
           </section>
 
-          <Divider id="contact" />
-
-          {/* Contact */}
-          <section style={{ padding: "64px 16px 96px" }}>
-            <Title level={2}>Contact</Title>
-            <Space size="middle" wrap>
-              <Button type="primary" icon={<MailOutlined />} href="mailto:me@example.com">
-                Email
-              </Button>
-              <Button icon={<GithubOutlined />} href="https://github.com/yourid" target="_blank">
-                GitHub
-              </Button>
-              <Button icon={<LinkOutlined />} href="#" target="_blank">
-                LinkedIn
-              </Button>
-            </Space>
-          </section>
         </Content>
 
         <Footer style={{ textAlign: "center" }}>
@@ -363,9 +344,9 @@ export default function PortfolioApp() {
 }
 
 // ------------------------------
-// Small components
+// 컴포넌트
 // ------------------------------
-function Skill({ name, pct }: { name: string; pct: number }) {
+function Skill({ name, pct }) {
   return (
     <Card hoverable>
       <Space direction="vertical" style={{ width: "100%" }}>
@@ -376,11 +357,7 @@ function Skill({ name, pct }: { name: string; pct: number }) {
   );
 }
 
-function DescriptionsLike({
-  items,
-}: {
-  items: [string, React.ReactNode][];
-}) {
+function DescriptionsLike({ items }) {
   return (
     <Space direction="vertical" size="small" style={{ width: "100%" }}>
       {items.map(([k, v]) => (
