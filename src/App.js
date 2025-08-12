@@ -24,13 +24,26 @@ import { MailOutlined, MoonOutlined, SunOutlined } from "@ant-design/icons";
 const { Header, Content, Footer } = Layout;
 const { Title, Paragraph, Text } = Typography;
 
-// 데이터: 박한웅 이력서/경력기술서 적용
 const NAV_ITEMS = [
   { key: "about", href: "#about", title: "소개" },
   { key: "skills", href: "#skills", title: "기술" },
   { key: "projects", href: "#projects", title: "대표 성과" },
   { key: "experience", href: "#experience", title: "경력" },
 ];
+
+const PROFILE = `
+• ECS·MVP 아키텍처 기반 MMORPG 클라이언트의 시스템 개발·구조 개선
+• Unity DOTS(ECS)·URP 환경에서의 게임 개발 경험
+• 글로벌·국내 캐주얼 게임 다수 런칭 및 안정적 라이브 서비스 운영
+• 엔진·툴링·시뮬레이터까지 아우르는 실전형 문제 해결 능력
+`;
+
+const ABOUT = `
+기존 설계 원칙과 규약을 지키며 확장성과 유지보수성을 높이는 방향으로 개선합니다.
+구조가 없으면 모듈과 데이터 흐름을 설계하고 필요한 시스템·툴을 구현합니다.
+UI/Reactive 프레임워크, JobSystem·DOTS 기반 데이터 지향 설계, 서드파티 연동과 툴링 제작에도 능숙합니다.
+리뷰는 아키텍처 일관성과 규약 준수에 중점을 둡니다.
+`;
 
 const SKILLS = [
   { name: "C#", pct: 95 },
@@ -179,11 +192,9 @@ export default function PortfolioApp() {
             <Row gutter={[32, 32]} align="middle">
               <Col xs={24} md={14}>
                 <Space direction="vertical" size="large">
-                  <Title style={{ marginBottom: 0 }}>박한웅 | 게임 클라이언트 리드/파트장</Title>
-                  <Paragraph type="secondary" style={{ marginTop: 0 }}>
-                    신규 게임 런칭과 안정적인 라이브 서비스 운영을 성공적으로 수행했습니다.
-                    대규모 멀티플레이어 환경의 클라이언트 아키텍처 설계와 최적화에 강점이 있으며,
-                    UI/Reactive 프레임워크 구축과 파트 리딩/멘토링으로 개발 품질과 서비스 지표 개선에 기여했습니다.
+                  <Title style={{ marginBottom: 0 }}>박한웅 | 클라이언트 프로그래머</Title>
+                  <Paragraph type="secondary" style={{ marginTop: 0, whiteSpace: "pre-line" }}>
+                    {PROFILE}
                   </Paragraph>
                   <Space wrap>
                     <Button type="primary" icon={<MailOutlined />} href="mailto:hidimvi@gmail.com">
@@ -217,9 +228,8 @@ export default function PortfolioApp() {
           {/* About */}
           <section style={{ padding: "64px 16px" }}>
             <Title level={2}>소개</Title>
-            <Paragraph>
-              대규모 프로젝트에서의 아키텍처 정립과 성능 최적화, 공용 UI/Reactive 프레임워크 구축을 통해 개발 생산성과 유지보수성을 높였습니다.
-              멀티스레딩과 데이터 지향 설계를 적극 활용해 안정적인 라이브 운영과 신규 런칭을 수행했습니다.
+            <Paragraph type="secondary" style={{ marginTop: 0, whiteSpace: "pre-line" }}>
+              {ABOUT}
             </Paragraph>
             <Row gutter={[16, 16]}>
               <Col xs={24} md={12}>
