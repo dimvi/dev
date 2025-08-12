@@ -192,32 +192,24 @@ export default function PortfolioApp() {
                 </Space>
               </Col>
               <Col xs={24} md={10}>
-                <Card
-                  style={{
-                    textAlign: "center",
-                    padding: 0,
-                    minHeight: 220,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                {/* 썸네일 이미지 영역 */}
+                <img
+                  src={`${process.env.PUBLIC_URL}/thumb.png`}
+                  alt="Profile Thumbnail"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = `${process.env.PUBLIC_URL}/logo512.png`;
                   }}
-                  bodyStyle={{ padding: 0 }}
-                >
-                  {/* 썸네일 이미지 영역 */}
-                  <img
-                    src="/thumbnail.png"
-                    alt="Profile Thumbnail"
-                    style={{
-                      width: "100%",
-                      maxWidth: 180,
-                      height: "auto",
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                      margin: "32px auto",
-                      boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
-                    }}
-                  />
-                </Card>
+                  style={{
+                    width: 240,
+                    height: 240,
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    margin: "32px auto",
+                    boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+                    display: "block",
+                  }}
+                />
               </Col>
             </Row>
           </section>
