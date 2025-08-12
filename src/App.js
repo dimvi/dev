@@ -8,6 +8,7 @@ import {
   ConfigProvider,
   Divider,
   FloatButton,
+  Image,
   Layout,
   Progress,
   Row,
@@ -193,22 +194,19 @@ export default function PortfolioApp() {
               </Col>
               <Col xs={24} md={10}>
                 {/* 썸네일 이미지 영역 */}
-                <img
+                <Image
                   src={`${process.env.PUBLIC_URL}/thumb.png`}
-                  alt="Profile Thumbnail"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = `${process.env.PUBLIC_URL}/logo512.png`;
-                  }}
+                  fallback={`${process.env.PUBLIC_URL}/logo512.png`}
+                  width={240}
+                  height={240}
                   style={{
-                    width: 240,
-                    height: 240,
                     borderRadius: "50%",
                     objectFit: "cover",
                     margin: "32px auto",
                     boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
                     display: "block",
                   }}
+                  preview={false}
                 />
               </Col>
             </Row>
