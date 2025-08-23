@@ -252,24 +252,29 @@ export default function PortfolioApp() {
   }, []);
 
   const handleExperienceClick = (exp) => {
+    if (shouldBlur) return;
     setSelectedExperience(exp);
     setIsModalVisible(true);
   };
 
   const handleModalClose = () => {
+    if (shouldBlur) return;
     setIsModalVisible(false);
     setSelectedExperience(null);
   };
 
   const handleAllExperiencesModalOpen = () => {
+    if (shouldBlur) return;
     setIsAllExperiencesModalVisible(true);
   };
 
   const handleAllExperiencesModalClose = () => {
+    if (shouldBlur) return;
     setIsAllExperiencesModalVisible(false);
   };
 
   const handlePrevCompany = () => {
+    if (shouldBlur) return;
     const currentIndex = EXPERIENCES.findIndex(exp => exp.company === selectedExperience.company);
     if (currentIndex > 0) {
       setSelectedExperience(EXPERIENCES[currentIndex - 1]);
@@ -277,6 +282,7 @@ export default function PortfolioApp() {
   };
 
   const handleNextCompany = () => {
+    if (shouldBlur) return;
     const currentIndex = EXPERIENCES.findIndex(exp => exp.company === selectedExperience.company);
     if (currentIndex < EXPERIENCES.length - 1) {
       setSelectedExperience(EXPERIENCES[currentIndex + 1]);
@@ -315,7 +321,13 @@ export default function PortfolioApp() {
                     {PROFILE}
                   </Paragraph>
                   <Space wrap>
-                    <Button type="primary" icon={<MailOutlined />} href="mailto:hidimvi@gmail.com">
+                    <Button 
+                      type="primary" 
+                      icon={<MailOutlined />} 
+                      href={shouldBlur ? undefined : "mailto:hidimvi@gmail.com"}
+                      disabled={shouldBlur}
+                      onClick={shouldBlur ? (e) => e.preventDefault() : undefined}
+                    >
                       이메일
                     </Button>
                   </Space>
@@ -409,7 +421,11 @@ export default function PortfolioApp() {
               items={EXPERIENCES.map((exp) => ({
                 label: exp.period,
                 children: (
-                  <Card hoverable onClick={() => handleExperienceClick(exp)} style={{ cursor: 'pointer' }}>
+                  <Card 
+                    hoverable={!shouldBlur}
+                    onClick={shouldBlur ? undefined : () => handleExperienceClick(exp)} 
+                    style={{ cursor: shouldBlur ? 'default' : 'pointer' }}
+                  >
                     <Row justify="space-between" align="middle" style={{ marginBottom: 8 }}>
                       <Title level={4} style={{ marginBottom: 0 }}>
                         {exp.company}
@@ -435,7 +451,7 @@ export default function PortfolioApp() {
           © {new Date().getFullYear()} Hanwoong Park
         </Footer>
 
-        <FloatButton.BackTop />
+        {!shouldBlur && <FloatButton.BackTop />}
         </Layout>
         
         <Modal
@@ -446,7 +462,7 @@ export default function PortfolioApp() {
                   type="text" 
                   icon={<LeftOutlined />} 
                   onClick={handlePrevCompany}
-                  disabled={getCurrentIndex() === 0}
+                  disabled={shouldBlur || getCurrentIndex() === 0}
                   size="small"
                 >
                   다음
@@ -460,7 +476,7 @@ export default function PortfolioApp() {
                   type="text" 
                   icon={<RightOutlined />} 
                   onClick={handleNextCompany}
-                  disabled={getCurrentIndex() === EXPERIENCES.length - 1}
+                  disabled={shouldBlur || getCurrentIndex() === EXPERIENCES.length - 1}
                   size="small"
                 >
                   이전
@@ -468,13 +484,14 @@ export default function PortfolioApp() {
               </Col>
             </Row>
           }
-          open={isModalVisible}
+          open={isModalVisible && !shouldBlur}
           onCancel={handleModalClose}
           footer={
             <div style={{ textAlign: 'right' }}>
               <Button
                 type="primary"
                 onClick={handleAllExperiencesModalOpen}
+                disabled={shouldBlur}
               >
                 전체 경력 보기
               </Button>
@@ -565,7 +582,7 @@ export default function PortfolioApp() {
         {/* 전체 경력 모달 */}
         <Modal
           title="전체 경력 상세"
-          open={isAllExperiencesModalVisible}
+          open={isAllExperiencesModalVisible && !shouldBlur}
           onCancel={handleAllExperiencesModalClose}
           footer={null}
           width={1400}
