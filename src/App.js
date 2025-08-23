@@ -229,7 +229,7 @@ export default function PortfolioApp() {
   useEffect(() => {
     const checkBlurCondition = () => {
       const currentUrl = window.location.href;
-      const isDevPath = currentUrl.includes('localhost:3000/dev');
+      const isDevPath = currentUrl.includes('localhost:3000/dev') || currentUrl.includes('dimvi.github.io/dev');
       const urlParams = new URLSearchParams(window.location.search);
       const hasCorrectParam = urlParams.get('param') === 'hanwoong';
       
