@@ -251,6 +251,56 @@ export default function PortfolioApp() {
     return () => window.removeEventListener('popstate', checkBlurCondition);
   }, []);
 
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      if (shouldBlur) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (shouldBlur) {
+        if (e.ctrlKey || e.metaKey) {
+          e.preventDefault();
+          return false;
+        }
+        if (e.key === 'F12' || (e.key === 'I' && (e.ctrlKey || e.metaKey) && e.shiftKey)) {
+          e.preventDefault();
+          return false;
+        }
+      }
+    };
+
+    const handleSelectStart = (e) => {
+      if (shouldBlur) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    const handleDragStart = (e) => {
+      if (shouldBlur) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    if (shouldBlur) {
+      document.addEventListener('contextmenu', handleContextMenu, { passive: false });
+      document.addEventListener('keydown', handleKeyDown, { passive: false });
+      document.addEventListener('selectstart', handleSelectStart, { passive: false });
+      document.addEventListener('dragstart', handleDragStart, { passive: false });
+    }
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('selectstart', handleSelectStart);
+      document.removeEventListener('dragstart', handleDragStart);
+    };
+  }, [shouldBlur]);
+
   const handleExperienceClick = (exp) => {
     if (shouldBlur) return;
     setSelectedExperience(exp);
@@ -306,7 +356,14 @@ export default function PortfolioApp() {
     >
       <div style={{
         filter: shouldBlur ? 'blur(10px)' : 'none',
-        transition: 'filter 0.3s ease'
+        transition: 'filter 0.3s ease',
+        userSelect: shouldBlur ? 'none' : 'auto',
+        WebkitUserSelect: shouldBlur ? 'none' : 'auto',
+        MozUserSelect: shouldBlur ? 'none' : 'auto',
+        msUserSelect: shouldBlur ? 'none' : 'auto',
+        pointerEvents: shouldBlur ? 'none' : 'auto',
+        WebkitTouchCallout: shouldBlur ? 'none' : 'default',
+        WebkitUserDrag: shouldBlur ? 'none' : 'auto'
       }}>
         <Layout>
 
